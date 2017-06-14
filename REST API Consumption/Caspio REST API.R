@@ -34,7 +34,7 @@ if (!require(ggplot2))
   library(ggplot2)
 }
 
-# Create your own appication key at https://YOUR_SITE.caspio.com/ui/access
+# Create your own application key at https://YOUR_SITE.caspio.com/ui/access
 client_key     = "PROFILE_CLIENT_KEY";
 client_secret  = "PROFILE_CLIENT_SECRET";
 

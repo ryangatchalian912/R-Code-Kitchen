@@ -34,7 +34,7 @@ if (!require(ggplot2))
   library(ggplot2)
 }
 
-# Create your own appication key at https://dev.twitter.com/apps
+# Create your own application key at https://dev.twitter.com/apps
 consumer_key    = "CONSUMER_KEY";
 consumer_secret = "CONSUMER_SECRET";
 
