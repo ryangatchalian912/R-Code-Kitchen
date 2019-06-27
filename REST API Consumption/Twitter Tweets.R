@@ -38,9 +38,14 @@ if (!require(ggplot2))
 consumer_key    = "CONSUMER_KEY";
 consumer_secret = "CONSUMER_SECRET";
 
+# Twitter OAuth endpoints
+twitter_url       = "https://api.twitter.com/";
+token_endpoint    = paste(twitter_url, "oauth2/token", sep = "");
+resource_endpoint = paste(twitter_url, "1.1/", sep = "");
+
 # Use basic auth
 secret  <- openssl::base64_encode(paste(consumer_key, consumer_secret, sep = ":"));
-request <- httr::POST("https://api.twitter.com/oauth2/token",
+request <- httr::POST(token_endpoint,
   httr::add_headers(
     "Authorization" = paste("Basic", secret),
     "Content-Type" = "application/x-www-form-urlencoded;charset=UTF-8"
@@ -52,7 +57,7 @@ request <- httr::POST("https://api.twitter.com/oauth2/token",
 token <- paste("Bearer", content(request)$access_token)
 
 # Actual API call
-url     <- "https://api.twitter.com/1.1/statuses/user_timeline.json?count=10&screen_name=Rbloggers"
+url     <- paste(resource_endpoint, "statuses/user_timeline.json?count=10&screen_name=Rbloggers", sep = "")
 request <- httr::GET(url, add_headers(Authorization = token))
 json    <- httr::content(request, as = "text")
 tweets  <- fromJSON(json)
