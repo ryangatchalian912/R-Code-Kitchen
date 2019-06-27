@@ -35,16 +35,16 @@ if (!require(ggplot2))
 }
 
 # Create your own application key at https://dev.twitter.com/apps
-consumer_key    = "CONSUMER_KEY";
-consumer_secret = "CONSUMER_SECRET";
+consumer_key    = "CONSUMER_KEY"
+consumer_secret = "CONSUMER_SECRET"
 
 # Twitter OAuth endpoints
-twitter_url       = "https://api.twitter.com/";
-token_endpoint    = paste(twitter_url, "oauth2/token", sep = "");
-resource_endpoint = paste(twitter_url, "1.1/", sep = "");
+twitter_url       = "https://api.twitter.com/"
+token_endpoint    = paste(twitter_url, "oauth2/token", sep = "")
+resource_endpoint = paste(twitter_url, "1.1/", sep = "")
 
 # Use basic auth
-secret  <- openssl::base64_encode(paste(consumer_key, consumer_secret, sep = ":"));
+secret  <- openssl::base64_encode(paste(consumer_key, consumer_secret, sep = ":"))
 request <- httr::POST(token_endpoint,
   httr::add_headers(
     "Authorization" = paste("Basic", secret),
