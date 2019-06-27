@@ -35,16 +35,16 @@ if (!require(ggplot2))
 }
 
 # Create your own application key at https://YOUR_SITE.caspio.com/ui/access
-client_key     = "PROFILE_CLIENT_KEY";
-client_secret  = "PROFILE_CLIENT_SECRET";
+client_key     = "PROFILE_CLIENT_KEY"
+client_secret  = "PROFILE_CLIENT_SECRET"
 
 # Caspio OAuth endpoints
-caspio_url        = "https://YOUR_SITE.caspio.com/";
-token_endpoint    = paste(caspio_url, "oauth/token", sep = "");
-resource_endpoint = paste(caspio_url, "rest/v1/", sep = "");
+caspio_url        = "https://YOUR_SITE.caspio.com/"
+token_endpoint    = paste(caspio_url, "oauth/token", sep = "")
+resource_endpoint = paste(caspio_url, "rest/v1/", sep = "")
 
 # Use basic auth
-secret  <- openssl::base64_encode(paste(client_key, client_secret, sep = ":"));
+secret  <- openssl::base64_encode(paste(client_key, client_secret, sep = ":"))
 request <- httr::POST(token_endpoint,
   httr::add_headers(
     "Authorization" = paste("Basic", secret),
@@ -55,7 +55,7 @@ request <- httr::POST(token_endpoint,
 );
 
 # Use basic auth
-secret  <- openssl::base64_encode(paste(client_key, client_secret, sep = ":"));
+secret  <- openssl::base64_encode(paste(client_key, client_secret, sep = ":"))
 request <- httr::POST(token_endpoint,
   httr::add_headers(
     "Authorization" = paste("Basic", secret)
@@ -68,7 +68,7 @@ request <- httr::POST(token_endpoint,
 token <- paste("Bearer", content(request)$access_token)
 
 # Actual API call
-url     <- paste(resource_endpoint, "tables", sep = "");
+url     <- paste(resource_endpoint, "tables", sep = "")
 request <- httr::GET(url, add_headers(Authorization = token))
 json    <- httr::content(request, as = "text")
 tables  <- fromJSON(json)
